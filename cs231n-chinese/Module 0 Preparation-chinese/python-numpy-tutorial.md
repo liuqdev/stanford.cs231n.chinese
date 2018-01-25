@@ -43,19 +43,19 @@ Numpy
   - [函数 Functions](#python-functions)
   - [类 Classes](#python-classes)
 - [Numpy](#numpy)
-  - [Arrays](#numpy-arrays)
-  - [Array indexing](#numpy-array-indexing)
-  - [Datatypes](#numpy-datatypes)
-  - [Array math](#numpy-math)
-  - [Broadcasting](#numpy-broadcasting)
+  - [阵列/数组 Arrays](#numpy-arrays)
+  - [阵列/数组索引 Array indexing](#numpy-array-indexing)
+  - [数据类型 Datatypes](#numpy-datatypes)
+  - [阵列/数组计算 Array math](#numpy-math)
+  - [广播 Broadcasting](#numpy-broadcasting)
 - [SciPy](#scipy)
-  - [Image operations](#scipy-image)
-  - [MATLAB files](#scipy-matlab)
-  - [Distance between points](#scipy-dist)
+  - [图片操作 Image operations](#scipy-image)
+  - [MATLAB 文件](#scipy-matlab)
+  - [点间距离](#scipy-dist)
 - [Matplotlib](#matplotlib)
-  - [Plotting](#matplotlib-plotting)
-  - [Subplots](#matplotlib-subplots)
-  - [Images](#matplotlib-images)
+  - [绘图 Plotting](#matplotlib-plotting)
+  - [子图 Subplots](#matplotlib-subplots)
+  - [图片 Images](#matplotlib-images)
 
 <a name='python'></a>
 
@@ -164,7 +164,7 @@ Python 中包含了好几种内置的容器类型：列表(lists), 字典(dictio
 <a name='python-lists'></a>
 
 #### 列表 Lists
-Python中列表(list) 相当于是数组(array), 但是Python列表是大小可变的
+Python中列表(list) 相当于是阵列/数组(array), 但是Python列表是大小可变的
 
 并且**可以存储不同类型的元素 **:
 
@@ -413,119 +413,108 @@ g.greet(loud=True)   # 调用一个实例方法; 输出 "HELLO, FRED!"
 
 ## Numpy
 
-[Numpy](http://www.numpy.org/) is the core library for scientific computing in Python.
-It provides a high-performance multidimensional array object, and tools for working with these
-arrays. If you are already familiar with MATLAB, you might find
-[this tutorial useful](http://wiki.scipy.org/NumPy_for_Matlab_Users) to get started with Numpy.
+[Numpy](http://www.numpy.org/) 是Python中用于科学计算的核心库。它提供了高效的多维阵列/数组对象以及用来处理这种对象的工具。如果你已经对MATLAB比较熟悉，[这篇文档](http://wiki.scipy.org/NumPy_for_Matlab_Users) 可能对于你开始使用Numpy有帮助。
 
 <a name='numpy-arrays'></a>
 
-### Arrays
-A numpy array is a grid of values, all of the same type, and is indexed by a tuple of
-nonnegative integers. The number of dimensions is the *rank* of the array; the *shape*
-of an array is a tuple of integers giving the size of the array along each dimension.
+### 阵列/数组 Arrays
+一个 numpy 阵列/数组 可以视作是由值构成的网格，其中所有元素为同一类型，通过非负值元组来索引。阵列/数组的秩(rank)是维度数;阵列/数组的大小( *shape*)是一个整型的阵列/数组，其给出了每个维度下的阵列/数组的大小。
 
-We can initialize numpy arrays from nested Python lists,
-and access elements using square brackets:
+我们可以使用Python 嵌套列表来初始化一个 numpy 阵列/数组，并且使用方括号来方位其中的元素:
 
 ```python
 import numpy as np
 
-a = np.array([1, 2, 3])   # Create a rank 1 array
+a = np.array([1, 2, 3])   # 创建一个秩为 1 的阵列/数组
 print(type(a))            # 输出 "<class 'numpy.ndarray'>"
 print(a.shape)            # 输出 "(3,)"
 print(a[0], a[1], a[2])   # 输出 "1 2 3"
-a[0] = 5                  # Change an element of the array
+a[0] = 5                  # 改变阵列/数组中的某个元素
 print(a)                  # 输出 "[5, 2, 3]"
 
-b = np.array([[1,2,3],[4,5,6]])    # Create a rank 2 array
+b = np.array([[1,2,3],[4,5,6]])    # 创建一个秩为 2 的阵列/数组
 print(b.shape)                     # 输出 "(2, 3)"
 print(b[0, 0], b[0, 1], b[1, 0])   # 输出 "1 2 4"
 ```
 
-Numpy also provides many functions to create arrays:
+Numpy 也提供了很多其他的方法来创建阵列/数组:
 
 ```python
 import numpy as np
 
-a = np.zeros((2,2))   # Create an array of all zeros
+a = np.zeros((2,2))   # 创建一个全 0 的阵列/数组
 print(a)              # 输出 "[[ 0.  0.]
                       #          [ 0.  0.]]"
 
-b = np.ones((1,2))    # Create an array of all ones
+b = np.ones((1,2))    # 创建一个全 1 的阵列/数组
 print(b)              # 输出 "[[ 1.  1.]]"
 
-c = np.full((2,2), 7)  # Create a constant array
+c = np.full((2,2), 7)  # 创建一个常阵列/数组
 print(c)               # 输出 "[[ 7.  7.]
                        #          [ 7.  7.]]"
 
-d = np.eye(2)         # Create a 2x2 identity matrix
+d = np.eye(2)         # 创建一个 a 2x2 单位矩阵
 print(d)              # 输出 "[[ 1.  0.]
                       #          [ 0.  1.]]"
 
-e = np.random.random((2,2))  # Create an array filled with random values
-print(e)                     # Might print "[[ 0.91940167  0.08143941]
+e = np.random.random((2,2))  # 创建一个随机数阵列/数组
+print(e)                     # 也许会输出 "[[ 0.91940167  0.08143941]
                              #               [ 0.68744134  0.87236687]]"
 ```
-You can read about other methods of array creation
-[in the documentation](http://docs.scipy.org/doc/numpy/user/basics.creation.html#arrays-creation).
+想知道关于阵列/数组创建更多的内容请阅读 [这篇文档](http://docs.scipy.org/doc/numpy/user/basics.creation.html#arrays-creation).
 
 <a name='numpy-array-indexing'></a>
 
-### Array indexing
-Numpy offers several ways to index into arrays.
+### 阵列/数组索引(/访问) Array indexing
+Numpy 提供了集中索引到阵列/数组中的方法。
 
-**Slicing:**
-Similar to Python lists, numpy arrays can be sliced.
-Since arrays may be multidimensional, you must specify a slice for each dimension
-of the array:
+**切片 Slicing:**
+类似于 Python 列表, numpy 阵列/数组也支持切片。
+由于numpy 的阵列/数组时多维的，所以你必须明确阵列/数组每个维度的切片。
 
 ```python
 import numpy as np
 
-# Create the following rank 2 array with shape (3, 4)
+# 创建一个秩为 2 大小为 (3, 4) 的阵列/数组
 # [[ 1  2  3  4]
 #  [ 5  6  7  8]
 #  [ 9 10 11 12]]
 a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
 
-# Use slicing to pull out the subarray consisting of the first 2 rows
-# and columns 1 and 2; b is the following array of shape (2, 2):
+# 使用切片来抽取 a 的子阵列/数组，包含其前两行，第 1 到 2 列中的元素。
+# b 为注释中 (2, 2) 的阵列/数组:
 # [[2 3]
 #  [6 7]]
 b = a[:2, 1:3]
 
-# A slice of an array is a view into the same data, so modifying it
-# will modify the original array.
+# 一个数据的切片是阵列/数组时同一数据区的不同视图，所以对于切片修改也会修改原始阵列/数组的元素
 print(a[0, 1])   # 输出 "2"
-b[0, 0] = 77     # b[0, 0] is the same piece of data as a[0, 1]
+b[0, 0] = 77     # b[0, 0] 和 a[0, 1] 是完全相同的数据
 print(a[0, 1])   # 输出 "77"
 ```
 
-You can also mix integer indexing with slice indexing.
-However, doing so will yield an array of lower rank than the original array.
-Note that this is quite different from the way that MATLAB handles array
-slicing:
+你可以将整数索引和切片索引混合使用。
+但是，这样做会产生比原始阵列/数组秩/级(rank)耕地的阵列/数组。
+注意，这和MATLAB中处理阵列/数组切片的方式完全不同：
 
 ```python
 import numpy as np
 
-# Create the following rank 2 array with shape (3, 4)
+# 创建如下秩为 2 ，大小 (3, 4) 的阵列/数组
 # [[ 1  2  3  4]
 #  [ 5  6  7  8]
 #  [ 9 10 11 12]]
 a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
 
-# Two ways of accessing the data in the middle row of the array.
-# Mixing integer indexing with slices yields an array of lower rank,
-# while using only slices yields an array of the same rank as the
-# original array:
-row_r1 = a[1, :]    # Rank 1 view of the second row of a
-row_r2 = a[1:2, :]  # Rank 2 view of the second row of a
+# 阵列/数组中间行的两种访问方式
+# 混合使用整数和切片作为索引的方式产生了秩较小的阵列/数组，
+# 而仅使用切片索引的方式产生了和原始阵列/数组同样秩的阵列/数组：
+row_r1 = a[1, :]    # 秩为 1，视作 a 的第二行
+row_r2 = a[1:2, :]  # 秩为 2，视作 a 的第二行
 print(row_r1, row_r1.shape)  # 输出 "[5 6 7 8] (4,)"
 print(row_r2, row_r2.shape)  # 输出 "[[5 6 7 8]] (1, 4)"
 
-# We can make the same distinction when accessing columns of an array:
+# 当访问一个阵列/数组的列，同样可以用这两种方式来观察差别：
 col_r1 = a[:, 1]
 col_r2 = a[:, 1:2]
 print(col_r1, col_r1.shape)  # 输出 "[ 2  6 10] (3,)"
@@ -534,39 +523,34 @@ print(col_r2, col_r2.shape)  # 输出 "[[ 2]
                              #          [10]] (3, 1)"
 ```
 
-**Integer array indexing:**
-When you index into numpy arrays using slicing, the resulting array view
-will always be a subarray of the original array. In contrast, integer array
-indexing allows you to construct arbitrary arrays using the data from another
-array. Here is an example:
+**整型阵列/数组索引 Integer array indexing:**
+当你采用切片的方式索引到 numpy 阵列/数组中，得到的结果形式上总是原始阵列/数组的一个子阵列/数组。相较而言，整型整列索引能够使用其他阵列/数组中的数据来构建你想要的阵列/数组。举例如下:
 
 ```python
 import numpy as np
 
 a = np.array([[1,2], [3, 4], [5, 6]])
 
-# An example of integer array indexing.
-# The returned array will have shape (3,) and
+# 整型整列索引举例
+# 返回一个大小为 (3,) 的阵列/数组
 print(a[[0, 1, 2], [0, 1, 0]])  # 输出 "[1 4 5]"
 
-# The above example of integer array indexing is equivalent to this:
+# 上面整型阵列/数组索引的示例等效于下面这种表达:
 print(np.array([a[0, 0], a[1, 1], a[2, 0]]))  # 输出 "[1 4 5]"
 
-# When using integer array indexing, you can reuse the same
-# element from the source array:
+# 整型整列索引, 可以重复使用原数组中的元素
 print(a[[0, 0], [1, 1]])  # 输出 "[2 2]"
 
-# Equivalent to the previous integer array indexing example
+# 等效于下面这种表达
 print(np.array([a[0, 1], a[0, 1]]))  # 输出 "[2 2]"
 ```
 
-One useful trick with integer array indexing is selecting or mutating one
-element from each row of a matrix:
+整型整列索引中有个实用的技巧，那就是选择或者更改矩阵每一行的一个元素：
 
 ```python
 import numpy as np
 
-# Create a new array from which we will select elements
+# 创建一个新的阵列/数组
 a = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
 
 print(a)  # 输出 "array([[ 1,  2,  3],
@@ -574,13 +558,13 @@ print(a)  # 输出 "array([[ 1,  2,  3],
           #                [ 7,  8,  9],
           #                [10, 11, 12]])"
 
-# Create an array of indices
+# 创建一个索引值阵列/数组
 b = np.array([0, 2, 0, 1])
 
-# Select one element from each row of a using the indices in b
+# 使用 b 中的索引值来在矩阵 a 中的每一行中选择对应元素
 print(a[np.arange(4), b])  # 输出 "[ 1  6  7 11]"
 
-# Mutate one element from each row of a using the indices in b
+# 使用 b 中的索引值来更改矩阵 a 中的每一行中选择对应元素
 a[np.arange(4), b] += 10
 
 print(a)  # 输出 "array([[11,  2,  3],
@@ -589,67 +573,56 @@ print(a)  # 输出 "array([[11,  2,  3],
           #                [10, 21, 12]])
 ```
 
-**Boolean array indexing:**
-Boolean array indexing lets you pick out arbitrary elements of an array.
-Frequently this type of indexing is used to select the elements of an array
-that satisfy some condition. Here is an example:
+**布尔型阵列/数组索引 Boolean array indexing:**
+布尔型阵列/数组缩影能够让你选择阵列/数组中的任意元素。这种类型的索引一般用来选择满足某些条件的阵列/数组中的元素。举例如下：
 
 ```python
 import numpy as np
 
 a = np.array([[1,2], [3, 4], [5, 6]])
 
-bool_idx = (a > 2)   # Find the elements of a that are bigger than 2;
-                     # this returns a numpy array of Booleans of the same
-                     # shape as a, where each slot of bool_idx tells
-                     # whether that element of a is > 2.
+bool_idx = (a > 2)   # 找出所有大于 2 的元素;
+                     # 这句代码返回一个 numpy 阵列/数组，大小与 a 相等，
+                     # bool_idx 中每一个位置对应于 a 相应位置元素是否大于 2
 
 print(bool_idx)      # 输出 "[[False False]
                      #          [ True  True]
                      #          [ True  True]]"
 
-# We use boolean array indexing to construct a rank 1 array
-# consisting of the elements of a corresponding to the True values
-# of bool_idx
+# 我们使用布尔型的阵列/数组来构建一个秩为 1 的阵列/数组，其由
+# bool_idx 中值为 True 对应的 a 中的元素组成
 print(a[bool_idx])  # 输出 "[3 4 5 6]"
 
-# We can do all of the above in a single concise statement:
+# 上述操作我们也可以使用一句简单的表达来完成:
 print(a[a > 2])     # 输出 "[3 4 5 6]"
 ```
 
-For brevity we have left out a lot of details about numpy array indexing;
-if you want to know more you should
-[read the documentation](http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html).
+对于numpy阵列/数组的索引技术，这里遗漏了很多具体细节，如果你有勇气了解它们，请阅读
+[这篇文档](http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html).
 
 <a name='numpy-datatypes'></a>
 
-### Datatypes
-Every numpy array is a grid of elements of the same type.
-Numpy provides a large set of numeric datatypes that you can use to construct arrays.
-Numpy tries to guess a datatype when you create an array, but functions that construct
-arrays usually also include an optional argument to explicitly specify the datatype.
-Here is an example:
+### 数据类型
+每个numpy阵列/数组可以视作由相同数据类型醉成的网格。Numpy提供了一系列的数值型数据类型来构建阵列/数组。当你创建一个阵列/数组时，numpy会想假设其数据类型，但是构建阵列/数组的函数通常会包含一个参数来明确数据类型。下面为一个具体示例：
 
 ```python
 import numpy as np
 
-x = np.array([1, 2])   # Let numpy choose the datatype
+x = np.array([1, 2])   # numpy 自行“选择”的数值类型
 print(x.dtype)         # 输出 "int64"
 
-x = np.array([1.0, 2.0])   # Let numpy choose the datatype
+x = np.array([1.0, 2.0])   # numpy 自行“选择”的数值类型
 print(x.dtype)             # 输出 "float64"
 
-x = np.array([1, 2], dtype=np.int64)   # Force a particular datatype
+x = np.array([1, 2], dtype=np.int64)   # 指定某种特定的数据类型
 print(x.dtype)                         # 输出 "int64"
 ```
-You can read all about numpy datatypes
-[in the documentation](http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html).
+关于 numpy 的数据类型，你可以阅读[这篇文档](http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html) 了解更多。
 
 <a name='numpy-math'></a>
 
-### Array math
-Basic mathematical functions operate elementwise on arrays, and are available
-both as operator overloads and as functions in the numpy module:
+### 阵列/数组数学运算
+在numpy模块中，不单是提供了运算符重载还提供了许多函数，能够进行基本的数学运算：
 
 ```python
 import numpy as np
@@ -657,41 +630,37 @@ import numpy as np
 x = np.array([[1,2],[3,4]], dtype=np.float64)
 y = np.array([[5,6],[7,8]], dtype=np.float64)
 
-# Elementwise sum; both produce the array
+# 对应元素之和(sum); 下面两种方式结果一致
 # [[ 6.0  8.0]
 #  [10.0 12.0]]
 print(x + y)
 print(np.add(x, y))
 
-# Elementwise difference; both produce the array
+# 对应元素之差(difference); 下面两种方式结果一致
 # [[-4.0 -4.0]
 #  [-4.0 -4.0]]
 print(x - y)
 print(np.subtract(x, y))
 
-# Elementwise product; both produce the array
+# 对应元素之积(product); 下面两种方式结果一致
 # [[ 5.0 12.0]
 #  [21.0 32.0]]
 print(x * y)
 print(np.multiply(x, y))
 
-# Elementwise division; both produce the array
+# 对应元素之除(division); 下面两种方式结果一致
 # [[ 0.2         0.33333333]
 #  [ 0.42857143  0.5       ]]
 print(x / y)
 print(np.divide(x, y))
 
-# Elementwise square root; produces the array
+# 逐元素求平方根(square root); 得到结果如下
 # [[ 1.          1.41421356]
 #  [ 1.73205081  2.        ]]
 print(np.sqrt(x))
 ```
 
-Note that unlike MATLAB, `*` is elementwise multiplication, not matrix
-multiplication. We instead use the `dot` function to compute inner
-products of vectors, to multiply a vector by a matrix, and to
-multiply matrices. `dot` is available both as a function in the numpy
-module and as an instance method of array objects:
+注意和 MATLAB 不一样，这里`*`符号是对应元素之积，而不是矩阵乘法。这里我们使用`dot`函数来计算向量间，向量和矩阵，矩阵间的乘法。numpy模块中`dot`既可以作为内置函数也可以作为阵列/数组对象的实例方法来调用:
 
 ```python
 import numpy as np
@@ -702,40 +671,35 @@ y = np.array([[5,6],[7,8]])
 v = np.array([9,10])
 w = np.array([11, 12])
 
-# Inner product of vectors; both produce 219
+# 向量间内积(Inner product) ; 两种方法均得到结果 219
 print(v.dot(w))
 print(np.dot(v, w))
 
-# Matrix / vector product; both produce the rank 1 array [29 67]
+# 矩阵向量乘法(product); 两种方法均得到秩/级为 1 的阵列/数组 [29 67]
 print(x.dot(v))
 print(np.dot(x, v))
 
-# Matrix / matrix product; both produce the rank 2 array
+# 矩阵间乘法(product); 两种方法均得到秩/级为 2 的阵列/数组 
 # [[19 22]
 #  [43 50]]
 print(x.dot(y))
 print(np.dot(x, y))
 ```
 
-Numpy provides many useful functions for performing computations on
-arrays; one of the most useful is `sum`:
+Numpy 对于基于阵列/数组的运算提供了很多有用的函数，其中一个最有用的方法就是`sum`:
 
 ```python
 import numpy as np
 
 x = np.array([[1,2],[3,4]])
 
-print(np.sum(x))  # Compute sum of all elements; 输出 "10"
-print(np.sum(x, axis=0))  # Compute sum of each column; 输出 "[4 6]"
-print(np.sum(x, axis=1))  # Compute sum of each row; 输出 "[3 7]"
+print(np.sum(x))  # 计算出所有元素的和; 输出 "10"
+print(np.sum(x, axis=0))  # 对每列(column)求和; 输出 "[4 6]"
+print(np.sum(x, axis=1))  # 对每行(row)求和; 输出 "[3 7]"
 ```
-You can find the full list of mathematical functions provided by numpy
-[in the documentation](http://docs.scipy.org/doc/numpy/reference/routines.math.html).
+阅读 [这篇文档](http://docs.scipy.org/doc/numpy/reference/routines.math.html) 你能够找到所有numpy支持的舒徐运算函数。
 
-Apart from computing mathematical functions using arrays, we frequently
-need to reshape or otherwise manipulate data in arrays. The simplest example
-of this type of operation is transposing a matrix; to transpose a matrix,
-simply use the `T` attribute of an array object:
+除了基于阵列/数组的数学运算函数，我们也经常需要对阵列/数组进行大小调整和其中数据的操作。这类操作中的代表就是对矩阵求转置；求一个矩阵的转置，最简单的方式是调用一个阵列/数组对象的`T` 属性：
 
 ```python
 import numpy as np
@@ -746,40 +710,35 @@ print(x)    # 输出 "[[1 2]
 print(x.T)  # 输出 "[[1 3]
             #          [2 4]]"
 
-# Note that taking the transpose of a rank 1 array does nothing:
+# 注意对于秩为 1 的阵列/数组求转置，无变化：
 v = np.array([1,2,3])
 print(v)    # 输出 "[1 2 3]"
 print(v.T)  # 输出 "[1 2 3]"
 ```
-Numpy provides many more functions for manipulating arrays; you can see the full list
-[in the documentation](http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html).
+阅读 [这篇文档](http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html) 你可以看到Numpy提供的用来对阵列/数组进行更多操作的更多函数。
 
 
 <a name='numpy-broadcasting'></a>
 
-### Broadcasting
-Broadcasting is a powerful mechanism that allows numpy to work with arrays of different
-shapes when performing arithmetic operations. Frequently we have a smaller array and a
-larger array, and we want to use the smaller array multiple times to perform some operation
-on the larger array.
+### 广播
+广播是numpy中一种强大的机制，用于算数操作，其使得大小不同的阵列/数组进行计算操作。我们往往会遇到同时又两个一大一小的阵列/数组情况，并且期望使用更小的阵列/数组在相对大的阵列/数组上执行一些操作。
 
-For example, suppose that we want to add a constant vector to each
-row of a matrix. We could do it like this:
+例如，我们要为一个矩阵的每一行加上一个常量向量，我们可以这样做： 
 
 ```python
 import numpy as np
 
-# We will add the vector v to each row of the matrix x,
-# storing the result in the matrix y
+# 将矩阵 x 的每一行加上向量 v，
+# 将结果存储到矩阵 y 中
 x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
 v = np.array([1, 0, 1])
-y = np.empty_like(x)   # Create an empty matrix with the same shape as x
+y = np.empty_like(x)   # 创建一个新矩阵，大小和 x 一致
 
-# Add the vector v to each row of the matrix x with an explicit loop
+# 使用明确的的(explicit)循环来对矩阵 x 的每一行加上向量 v 
 for i in range(4):
     y[i, :] = x[i, :] + v
 
-# Now y is the following
+# 结果 y 如下
 # [[ 2  2  4]
 #  [ 5  5  7]
 #  [ 8  8 10]
@@ -787,169 +746,146 @@ for i in range(4):
 print(y)
 ```
 
-This works; however when the matrix `x` is very large, computing an explicit loop
-in Python could be slow. Note that adding the vector `v` to each row of the matrix
-`x` is equivalent to forming a matrix `vv` by stacking multiple copies of `v` vertically,
-then performing elementwise summation of `x` and `vv`. We could implement this
-approach like this:
+采用这种方式是可行的；然而，当矩阵 `x`非常大的时候，这种采用明确循环的计算在Python中会运行得非常慢。 注意，将向量 v 加到矩阵 x 的每行，相当于将多个相同的向量 v 摞(stack)起来组成 vv, 然后对 x 和 vv 相加。采用下面方法可以实现这一操作：
 
 ```python
 import numpy as np
 
-# We will add the vector v to each row of the matrix x,
-# storing the result in the matrix y
+# 将矩阵 x 的每一行加上向量 v，
+# 将结果存储到矩阵 y 中
 x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
 v = np.array([1, 0, 1])
-vv = np.tile(v, (4, 1))   # Stack 4 copies of v on top of each other
+vv = np.tile(v, (4, 1))   # 将 4 个向量 v 垂直地摞起来
 print(vv)                 # 输出 "[[1 0 1]
                           #          [1 0 1]
                           #          [1 0 1]
                           #          [1 0 1]]"
-y = x + vv  # Add x and vv elementwise
+y = x + vv  # x 和 vv 逐元素相加
 print(y)  # 输出 "[[ 2  2  4
           #          [ 5  5  7]
           #          [ 8  8 10]
           #          [11 11 13]]"
 ```
 
-Numpy broadcasting allows us to perform this computation without actually
-creating multiple copies of `v`. Consider this version, using broadcasting:
+Numpy 广播让我们不需要实际创建多个向量 `v` 副本来进行计算。下方为使用广播来计算地版本：
 
 ```python
 import numpy as np
 
-# We will add the vector v to each row of the matrix x,
-# storing the result in the matrix y
+# 将向量 v 加到矩阵 x 的每行
+# 矩阵 y 用以存储计算结果
 x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
 v = np.array([1, 0, 1])
-y = x + v  # Add v to each row of x using broadcasting
+y = x + v  # 通过广播机制，将 v 加到 x 矩阵的每行
 print(y)  # 输出 "[[ 2  2  4]
           #          [ 5  5  7]
           #          [ 8  8 10]
           #          [11 11 13]]"
 ```
 
-The line `y = x + v` works even though `x` has shape `(4, 3)` and `v` has shape
-`(3,)` due to broadcasting; this line works as if `v` actually had shape `(4, 3)`,
-where each row was a copy of `v`, and the sum was performed elementwise.
+虽然其中 `x`的大小是 `(4, 3)` ，而`v`的大小为`(3,)` ,但是 `y = x + v` 这行代码能够正常运行得到正确的结果，这需要感谢Python的广播机制；这行代码之所以能够运行，是因为 `v`的实际大小是`(4, 3)` 其中每行就是 向量`v`的一个拷贝，之后逐元素进行运算。
 
-Broadcasting two arrays together follows these rules:
+广播两个阵列/数组遵循以下这些规则：
 
-1. If the arrays do not have the same rank, prepend the shape of the lower rank array
-   with 1s until both shapes have the same length.
-2. The two arrays are said to be *compatible* in a dimension if they have the same
-   size in the dimension, or if one of the arrays has size 1 in that dimension.
-3. The arrays can be broadcast together if they are compatible in all dimensions.
-4. After broadcasting, each array behaves as if it had shape equal to the elementwise
-   maximum of shapes of the two input arrays.
-5. In any dimension where one array had size 1 and the other array had size greater than 1,
-   the first array behaves as if it were copied along that dimension
+1. 如果两个阵列/数组的秩/级(rank)不一样，需要先以一为单位来扩展秩/级比小的阵列/数组知道两者的大小一致。
+2. 如果两个阵列/数组的维度一致，或者其中一个维度数为1，我们就说这两个阵列/数组在维度上是相容的。
+3. 如果两个阵列/数组在所有维度上是相容的，则说他们是可以广播的。
+4. 广播之后，每个阵列/数组的大小将形如输入阵列/数组中每次对应项中最大的尺寸(译者注: 这段话不太好翻译)。(After broadcasting, each array behaves as if it had shape equal to the elementwise
+   maximum of shapes of the two input arrays.)
+5. 如果一个矩阵其任意一维上的长度为 1，而另外一个矩阵在该维下长度大于 1，那么在该维度上就形如该维长度为 1 的数组进行了复制。
 
-If this explanation does not make sense, try reading the explanation
-[from the documentation](http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html)
-or [this explanation](http://wiki.scipy.org/EricsBroadcastingDoc).
+如果这段说明你没有理解, 请阅读 [这篇文档](http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html)
+或者 [这个解释](http://wiki.scipy.org/EricsBroadcastingDoc).
 
-Functions that support broadcasting are known as *universal functions*. You can find
-the list of all universal functions
-[in the documentation](http://docs.scipy.org/doc/numpy/reference/ufuncs.html#available-ufuncs).
+支持广播的函数被称为 *通用函数 (universal functions)*。想了解更多通用函数，请阅读
+[这篇文档](http://docs.scipy.org/doc/numpy/reference/ufuncs.html#available-ufuncs).
 
-Here are some applications of broadcasting:
+这里又广播的几个应用：
 
 ```python
 import numpy as np
 
-# Compute outer product of vectors
-v = np.array([1,2,3])  # v has shape (3,)
-w = np.array([4,5])    # w has shape (2,)
-# To compute an outer product, we first reshape v to be a column
-# vector of shape (3, 1); we can then broadcast it against w to yield
-# an output of shape (3, 2), which is the outer product of v and w:
+# 计算两向量的外积
+v = np.array([1,2,3])  # v 大小为 (3,)
+w = np.array([4,5])    # w 大小 (2,)
+# 计算向量的外积, 首先将向量 v 调整大小/重塑(resize)为一个列向量,
+# 大小为(3, 1)，然后对 w 广播 v 得到 v 和 w 的外积，大小为(3, 2):
 # [[ 4  5]
 #  [ 8 10]
 #  [12 15]]
 print(np.reshape(v, (3, 1)) * w)
 
-# Add a vector to each row of a matrix
+# 将某向量加到矩阵每一行
 x = np.array([[1,2,3], [4,5,6]])
-# x has shape (2, 3) and v has shape (3,) so they broadcast to (2, 3),
+# x 大小为 (2, 3) and v 大小为 (3,) so they broadcast to (2, 3),
 # giving the following matrix:
 # [[2 4 6]
 #  [5 7 9]]
 print(x + v)
 
-# Add a vector to each column of a matrix
-# x has shape (2, 3) and w has shape (2,).
-# If we transpose x then it has shape (3, 2) and can be broadcast
-# against w to yield a result of shape (3, 2); transposing this result
-# yields the final result of shape (2, 3) which is the matrix x with
-# the vector w added to each column. Gives the following matrix:
+# 将某向量加到矩阵每一列
+# x 大小为 (2, 3) and w 大小为 (2,).
+# x 的转置大小为 (3, 2) 然乎对 w 广播
+# 得到的结果大小 (3, 2); 对该结果转置
+# 得到的结果大小 (2, 3) ，得到矩阵 x 
+# 每列加上向量 w的计算结果。
 # [[ 5  6  7]
 #  [ 9 10 11]]
 print((x.T + w).T)
-# Another solution is to reshape w to be a column vector of shape (2, 1);
-# we can then broadcast it directly against x to produce the same
-# output.
+# 另一种方法是将 w 调整为大小为列向量，大小为(2, 1)；
+# 我们就可以对 x 直接广播 w ，得到和上述方法相同的结果。
 print(x + np.reshape(w, (2, 1)))
 
-# Multiply a matrix by a constant:
-# x has shape (2, 3). Numpy treats scalars as arrays of shape ();
-# these can be broadcast together to shape (2, 3), producing the
-# following array:
+# 将一个矩阵乘以一个常数:
+# x 大小为 (2, 3). Numpy 将常量视作大小为 shape(x) 的阵列/数组;
+# 例子中被广播成大小为shape(2, 3)，得到以下结果:
 # [[ 2  4  6]
 #  [ 8 10 12]]
 print(x * 2)
 ```
 
-Broadcasting typically makes your code more concise and faster, so you
-should strive to use it where possible.
+广播机制一般情况下能使得你的代码变得简介而高效，所以你需要努力尽可能在能广播的时候尽量广播。
 
-### Numpy Documentation
-This brief overview has touched on many of the important things that you need to
-know about numpy, but is far from complete. Check out the
-[numpy reference](http://docs.scipy.org/doc/numpy/reference/)
-to find out much more about numpy.
+### Numpy 文档
+本文以及涉及了numpy中很多你需要掌握的内容，但是只是大概介绍了一下，还远远不够和完整。关于numpy，想了解更多，请阅读
+[numpy 文档](http://docs.scipy.org/doc/numpy/reference/)。
 
 <a name='scipy'></a>
 
 ## SciPy
-Numpy provides a high-performance multidimensional array and basic tools to
-compute with and manipulate these arrays.
+Numpy提供了高效的多维阵列/数组对象以及计算和处理阵列/数组的多种基础工具。
 [SciPy](http://docs.scipy.org/doc/scipy/reference/)
-builds on this, and provides
-a large number of functions that operate on numpy arrays and are useful for
-different types of scientific and engineering applications.
+就是基于此建立的强大工具，它提供了可以在 numpy 阵列/数组上操作的多种函数，并且在科学和工程领域有极其广泛的应用。
 
-The best way to get familiar with SciPy is to
-[browse the documentation](http://docs.scipy.org/doc/scipy/reference/index.html).
-We will highlight some parts of SciPy that you might find useful for this class.
+熟悉SciPy最好的方式就是阅读 [这篇文档](http://docs.scipy.org/doc/scipy/reference/index.html).
+z在这里我们着重挑选了 SciPy 中几个重要的模块，并将在这门课中练习使用。
 
 <a name='scipy-image'></a>
 
-### Image operations
-SciPy provides some basic functions to work with images.
-For example, it has functions to read images from disk into numpy arrays,
-to write numpy arrays to disk as images, and to resize images.
-Here is a simple example that showcases these functions:
+### 图片操作
+SciPy提供了一些基本的函数来处理图片(image).
+l例如，其提供了将图片从存储磁盘中读取到 numpy 阵列/数组的函数，
+将 numpy 阵列/数组写入到图像的函数，重新调整图片大小的函数等等。
+这里有一个简单示例，来展示上述功能：
 
 ```python
 from scipy.misc import imread, imsave, imresize
 
-# Read an JPEG image into a numpy array
+# 读取一幅 JPEG 图片到 numpy 阵列/数组中
 img = imread('assets/cat.jpg')
 print(img.dtype, img.shape)  # 输出 "uint8 (400, 248, 3)"
 
-# We can tint the image by scaling each of the color channels
-# by a different scalar constant. The image has shape (400, 248, 3);
-# we multiply it by the array [1, 0.95, 0.9] of shape (3,);
-# numpy broadcasting means that this leaves the red channel unchanged,
-# and multiplies the green and blue channels by 0.95 and 0.9
-# respectively.
+# 我们可以对图片的每个通道值乘以一个标量值来对图片进行着色
+# 例子中图片大小为 (400, 248, 3);
+# 将其乘以阵列/数组 [1, 0.95, 0.9] 大小为(3,);
+# 由于 numpy 的广播机制，图片的红色通道值将不做改变,
+# 绿色通道和蓝色通道分别乘以 0.95 和 0.9
 img_tinted = img * [1, 0.95, 0.9]
 
-# Resize the tinted image to be 300 by 300 pixels.
+# 将着色后的图片调整为 300 x 300 像素大小
 img_tinted = imresize(img_tinted, (300, 300))
 
-# Write the tinted image back to disk
+# 将着色后的图片写回磁盘存储
 imsave('assets/cat_tinted.jpg', img_tinted)
 ```
 
@@ -957,98 +893,92 @@ imsave('assets/cat_tinted.jpg', img_tinted)
   <img src='/assets/cat.jpg'>
   <img src='/assets/cat_tinted.jpg'>
   <div class='figcaption'>
-    Left: The original image.
-    Right: The tinted and resized image.
+    左侧: 元素图片。
+    右侧: 重新着色和调整大小后的图片。
   </div>
 </div>
 
 <a name='scipy-matlab'></a>
 
-### MATLAB files
-The functions `scipy.io.loadmat` and `scipy.io.savemat` allow you to read and
-write MATLAB files. You can read about them
-[in the documentation](http://docs.scipy.org/doc/scipy/reference/io.html).
+### MATLAB 文件
+使用 `scipy.io.loadmat` 和`scipy.io.savemat` 函数能够读入和写回 MATLAB 文件
+关于其具体用大请阅读 [这篇文档](http://docs.scipy.org/doc/scipy/reference/io.html).
 
 <a name='scipy-dist'></a>
 
-### Distance between points
-SciPy defines some useful functions for computing distances between sets of points.
+### 点间距离
+SciPy 定义了很多有用的函数，用来计算点集合中点(译者注：不只是二维空间的点)间距离。
 
-The function `scipy.spatial.distance.pdist` computes the distance between all pairs
-of points in a given set:
+`scipy.spatial.distance.pdist` 函数用来计算给定集合中每对点间距离：
 
 ```python
 import numpy as np
 from scipy.spatial.distance import pdist, squareform
 
-# Create the following array where each row is a point in 2D space:
+# 创建如下发数据，其中每行代表二维平面空间中的一个点：
 # [[0 1]
 #  [1 0]
 #  [2 0]]
 x = np.array([[0, 1], [1, 0], [2, 0]])
 print(x)
 
-# Compute the Euclidean distance between all rows of x.
-# d[i, j] is the Euclidean distance between x[i, :] and x[j, :],
-# and d is the following array:
+# 计算 x 中每行间的欧几里得距离。
+# d[i, j] 表示 x[i, :] 与 x[j, :] 间的距离；
+# d 是以下矩阵:
 # [[ 0.          1.41421356  2.23606798]
 #  [ 1.41421356  0.          1.        ]
 #  [ 2.23606798  1.          0.        ]]
 d = squareform(pdist(x, 'euclidean'))
 print(d)
 ```
-You can read all the details about this function
-[in the documentation](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html).
+关于本函数
+[这篇文档](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html).
 
-A similar function (`scipy.spatial.distance.cdist`) computes the distance between all pairs
-across two sets of points; you can read about it
-[in the documentation](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html).
+有一个类似的函数 (`scipy.spatial.distance.cdist`) 同样用来计算两个集合之间点对之间的距离；关于其用法请参见这篇文档
+[这篇文档](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html).
 
 <a name='matplotlib'></a>
 
 ## Matplotlib
-[Matplotlib](http://matplotlib.org/) is a plotting library.
-In this section give a brief introduction to the `matplotlib.pyplot` module,
-which provides a plotting system similar to that of MATLAB.
+[Matplotlib](http://matplotlib.org/) 是一个绘图库。
+在这个部分，将对 `matplotlib.pyplot`模块作简要的介绍，在MATLAB中有与之相似的模块。
 
 <a name='matplotlib-plot'></a>
 
-### Plotting
-The most important function in matplotlib is `plot`,
-which allows you to plot 2D data. Here is a simple example:
+### 绘图 Plotting
+matplotlib 中最最重要的函数就是 `plot`, 它可以将你的数据绘制成 2D(平面) 图。下面是一个简单示例：
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Compute the x and y coordinates for points on a sine curve
+# 计算正弦曲线上点的 x 和 y 坐标
 x = np.arange(0, 3 * np.pi, 0.1)
 y = np.sin(x)
 
-# Plot the points using matplotlib
+# 使用 matplotlib 来绘制点
 plt.plot(x, y)
-plt.show()  # You must call plt.show() to make graphics appear.
+plt.show()  # 必须调用 plt.show() 来显示图
 ```
 
-Running this code produces the following plot:
+运行上代码，最终会生成下图:
 
 <div class='fig figcenter fighighlight'>
   <img src='/assets/sine.png'>
 </div>
 
-With just a little bit of extra work we can easily plot multiple lines
-at once, and add a title, legend, and axis labels:
+只需要很少量的工作，我们就能在一张图上绘制多条曲线，为图标增加标题，图例，坐标轴名称：
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Compute the x and y coordinates for points on sine and cosine curves
+# 计算正弦曲线和余弦去线上点的 x 和 y 坐标
 x = np.arange(0, 3 * np.pi, 0.1)
 y_sin = np.sin(x)
 y_cos = np.cos(x)
 
-# Plot the points using matplotlib
+# 使用 matplotlib 来绘制点
 plt.plot(x, y_sin)
 plt.plot(x, y_cos)
 plt.xlabel('x axis label')
@@ -1061,38 +991,36 @@ plt.show()
   <img src='/assets/sine_cosine.png'>
 </div>
 
-You can read much more about the `plot` function
-[in the documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot).
+关于 `plot` 函数，想了解更多请阅读 [这篇文档](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot).
 
 <a name='matplotlib-subplots'></a>
 
-### Subplots
-You can plot different things in the same figure using the `subplot` function.
-Here is an example:
+### 子图 Subplots
+使用`subplot`函数能够在绘图(figure)中绘制几幅不同的图像。下方为一个示例：
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Compute the x and y coordinates for points on sine and cosine curves
+# 计算正弦曲线和余弦去线上点的 x 和 y 坐标
 x = np.arange(0, 3 * np.pi, 0.1)
 y_sin = np.sin(x)
 y_cos = np.cos(x)
 
-# Set up a subplot grid that has height 2 and width 1,
-# and set the first such subplot as active.
+# 设置子图网格，高度为 2 宽度为 1,
+# 并且将第一幅这样的子图设置为当前(activated)
 plt.subplot(2, 1, 1)
 
-# Make the first plot
+# 制作第一幅
 plt.plot(x, y_sin)
 plt.title('Sine')
 
-# Set the second subplot as active, and make the second plot.
+# 将第二幅这样的子图设置为当前(activated), 制作第二幅图
 plt.subplot(2, 1, 2)
 plt.plot(x, y_cos)
 plt.title('Cosine')
 
-# Show the figure.
+# 显示全部绘图(figure)
 plt.show()
 ```
 
@@ -1100,13 +1028,12 @@ plt.show()
   <img src='/assets/sine_cosine_subplot.png'>
 </div>
 
-You can read much more about the `subplot` function
-[in the documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot).
+关于 `subplot` 函数，你可以通过阅读 [这篇文档](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.subplot) 了解更多。
 
 <a name='matplotlib-images'></a>
 
-### Images
-You can use the `imshow` function to show images. Here is an example:
+### 图片 Images
+可以使用 `imshow` 函数来展示图片。下面是一个例子:
 
 ```python
 import numpy as np
@@ -1116,16 +1043,16 @@ import matplotlib.pyplot as plt
 img = imread('assets/cat.jpg')
 img_tinted = img * [1, 0.95, 0.9]
 
-# Show the original image
+# 显示原始图片
 plt.subplot(1, 2, 1)
 plt.imshow(img)
 
-# Show the tinted image
+# 显示着色的图片
 plt.subplot(1, 2, 2)
 
-# A slight gotcha with imshow is that it might give strange results
-# if presented with data that is not uint8. To work around this, we
-# explicitly cast the image to uint8 before displaying it.
+# 如果要显示的数据不是 uint8 类型编码的，imshow 的一个小毛病是
+# 有时候它会输出很奇怪的结果。为了解决这个问题, 我们在显示其之前
+# 显式地将图片专户为 uint8 类型。
 plt.imshow(np.uint8(img_tinted))
 plt.show()
 ```
