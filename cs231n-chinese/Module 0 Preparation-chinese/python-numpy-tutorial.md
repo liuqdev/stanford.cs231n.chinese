@@ -4,22 +4,7 @@ title: Python Numpy Tutorial
 permalink: /python-numpy-tutorial/
 ---
 
-<!--
-Python:
-  简单的数据类型
-    integer, float, string
- 复合数据类型
-    tuple, list, dictionary, set
-  流控制
-    if, while, for, try, with
-  解析器, 生成器
-  函数
-  库
-  标准库
-    json, collections, itertools
-
-Numpy
--->
+# Python Numpy 入门教程
 
 本教程最初由 [Justin Johnson](http://cs.stanford.edu/people/jcjohns/) 撰写创立。现由[Qi (Lewis) Liu](https://github.com/liuqidev) 翻译整理。
 
