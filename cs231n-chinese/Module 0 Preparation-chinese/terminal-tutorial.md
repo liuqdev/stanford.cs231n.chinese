@@ -13,24 +13,24 @@ permalink: /terminal-tutorial/
   <img src='/assets/terminal-shared.jpg'>
 </div>
 
-Yours will look similar. Click the "Start" button on the lower right corner. This will clone the shared snapshot to your own account. Now you should be able to find the terminal under the [My Terminals](https://www.stanfordterminalcloud.com/terminals) tab.
+如图所示，点击右下角的"开始Start"按钮Click the "Start" ，你的账户中就会有这些分享的截图/快照。在 [My Terminals](https://www.stanfordterminalcloud.com/terminals) 下找到你的终端(terminal) 。
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/terminal-my.jpg'>
+  <img src='/assets/终端(terminal)-my.jpg'>
 </div>
 
-Yours will look similar. You are all set! To work on the assignments, click the link to your terminal (shown in the red box in the above image). This link will open up the user interface layer over an AWS machine. It will look something similar to this:
+Yours will look similar. You are all set! 点击指向你的终端(terminal)的链接（图中的红框）, 来工作在你的终端上。这个链接就会打开在AWS 服务器(Amazon Web Services 亚马逊网络服务, machine) 的用户交互界面。看起来界面会和以下类似：
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/terminal-development.jpg'>
+  <img src='/assets/终端(terminal)-development.jpg'>
 </div>
 
-We have set up the Jupyter Notebook and other dependencies in the terminal. Launch a new console window with the small + sign (if you don't already have one), navigate around and look for the assignment folder and code. Launch a Jupyer notebook and work on the assignment. If your're a student enrolled in the class you will submit your assignment through Coursework:
+在终端中已经为你准备好了Jupyter Notebook和其他依赖项。通过小`+` 号来新建一个控制台窗口(如果之前没有创建过的话)，还能浏览和查找编程任务的文件夹和代码。启动一个Jupter Notebook在上面完成你的编程任务。如果你是参见本门课程的同学，你将通过 Coursework 来提交你的编程任务:
 
 <div class='fig figcenter fighighlight'>
   <img src='/assets/terminal-coursework.jpg'>
 </div>
 
-For more information about [Terminal](https://www.stanfordterminalcloud.com), check out the [FAQ](https://www.stanfordterminalcloud.com/faq) page.
+关于terminal的更多请阅读 [Terminal 文档](https://www.stanfordterminalcloud.com), 以及其 [问答 FAQ](https://www.stanfordterminalcloud.com/faq) 页面。
 
-**Important Note:** the usage of Terminal is charged on an hourly rate based on the instance type. A medium type instance costs $0.124 per hour. If you are enrolled in the class email Serena Yeung (syyeung@cs.stanford.edu) to request Terminal credits. We will send you $3 the first time around, and you can request more funds on a rolling basis when you run out. Please be responsible with the funds we allocate you.
+**重要提示:** 终端(Terminal)的是用基于运行的实例，按照小时来计费。一个中等大小的示例的花费是**每小时0.124美元（0.7元，人民币）。如果你已经报名了本门课程，请发送邮件给Serena Yeung (syyeung@cs.stanford.edu) 来获取资助，我们第一次会发送给你 3 美元助学金，假如用完的话，还可以继续索取。 ** 请好好利用我们给予你的资金支持。
