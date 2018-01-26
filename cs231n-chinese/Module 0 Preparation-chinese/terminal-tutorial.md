@@ -3,13 +3,11 @@ layout: page
 title: Terminal.com Tutorial
 permalink: /terminal-tutorial/
 ---
-For the assignments, we offer an option to use [Terminal](https://www.stanfordterminalcloud.com) for developing and testing your implementations. Notice that we're not using the main Terminal.com site but a subdomain which has been assigned specifically for this class. [Terminal](https://www.stanfordterminalcloud.com) is an online computing platform that allows us to access pre-configured command line environments. Note that, it's not required to use [Terminal](https://www.stanfordterminalcloud.com) for your assignments; however, it might make life easier with all the required dependencies and development toolkits configured for you.
+对于本课程的编程任务，我们提供了一种可选的方式来开发和测试你的实现，即使用 [Terminal](https://www.stanfordterminalcloud.com) 。注意我们不是在主站点(Terminal.com )来使用，而是在一个专门为我们这门课注册的二级域名下使用。 [Terminal](https://www.stanfordterminalcloud.com)  是一个在线的计算平台，允许我们使用预先配置的命令行环境。请注意，我们不是使用 [Terminal](https://www.stanfordterminalcloud.com) 站点来提交你的编程任务，而是将配置好的依赖和开发工具包提供给你使得你的开发更便利.
 
-This tutorial lists the necessary steps of working on the assignments using Terminal. First of all, [sign up your own account](https://www.stanfordterminalcloud.com/signup). Log in [Terminal](https://www.stanfordterminalcloud.com) with the account that you have just created.
+本教程列举了使用 Terminal 来让你提交的任务成功运行必须的步骤。首先，[注册一个自己的账户](https://www.stanfordterminalcloud.com/signup)，是用你刚创建的账户来登录 [Terminal](https://www.stanfordterminalcloud.com) 。
 
-For each assignment, we will provide you a link to a shared terminal snapshot. These snapshots are pre-configured command line environments with the starter code, where you can write your implementations and execute the code.
-
-Here's an example of what a snapshot page looked like for an assignment in 2015:
+对于每一次编程任务，网站都会提供给你一个链接来分享你的任务截图/快照，这些截图/快照都是通过启动代码来预编译好的命令行环境，你可以编写和实现这些启动代码。下方是2015年编程任务中的一个快照/截图示例：
 
 <div class='fig figcenter fighighlight'>
   <img src='/assets/terminal-shared.jpg'>
