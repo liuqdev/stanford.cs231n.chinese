@@ -43,10 +43,12 @@ We saw that a setting of the parameters \\(W\\) that produced predictions for ex
 The loss functions we'll look at in this class are usually defined over very high-dimensional spaces (e.g. in CIFAR-10 a linear classifier weight matrix is of size [10 x 3073] for a total of 30,730 parameters), making them difficult to visualize. However, we can still gain some intuitions about one by slicing through the high-dimensional space along rays (1 dimension), or along planes (2 dimensions). For example, we can generate a random weight matrix \\(W\\) (which corresponds to a single point in the space), then march along a ray and record the loss function value along the way. That is, we can generate a random direction \\(W_1\\) and compute the loss along this direction by evaluating \\(L(W + a W_1)\\) for different values of \\(a\\). This process generates a simple plot with the value of \\(a\\) as the x-axis and the value of the loss function as the y-axis. We can also carry out the same procedure with two dimensions by evaluating the loss \\( L(W + a W_1 + b W_2) \\) as we vary \\(a, b\\). In a plot, \\(a, b\\) could then correspond to the x-axis and the y-axis, and the value of the loss function can be visualized with a color:
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/svm1d.png">
-  <img src="/assets/svm_one.jpg">
-  <img src="/assets/svm_all.jpg">
+  <img src="/assets/1-3/svm1d.png">
+
+  <img src="/assets/1-3/svm_one.jpg">
+  <img src="/assets/1-3/svm_all.jpg">
   <div class="figcaption">
+
     Loss function landscape for the Multiclass SVM (without regularization) for one single example (left,middle) and for a hundred examples (right) in CIFAR-10. Left: one-dimensional loss by only varying <b>a</b>. Middle, Right: two-dimensional loss slice, Blue = low loss, Red = high loss. Notice the piecewise-linear structure of the loss function. The losses for multiple examples are combined with average, so the bowl shape on the right is the average of many piece-wise linear bowls (such as the one in the middle).
   </div>
 </div>
@@ -71,7 +73,7 @@ $$
 Since these examples are 1-dimensional, the data \\(x_i\\) and weights \\(w_j\\) are numbers. Looking at, for instance, \\(w_0\\), some terms above are linear functions of \\(w_0\\) and each is clamped at zero. We can visualize this as follows:
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/svmbowl.png">
+  <img src="/assets/1-3/svmbowl.png">
   <div class="figcaption">
     1-dimensional illustration of the data loss. The x-axis is a single weight and the y-axis is the loss. The data loss is a sum of multiple terms, each of which is either independent of a particular weight, or a linear function of it that is thresholded at zero. The full SVM data loss is a 30,730-dimensional version of this shape.
   </div>
@@ -264,7 +266,7 @@ for step_size_log in [-10, -9, -8, -7, -6, -5,-4,-3,-2,-1]:
 **Effect of step size**. The gradient tells us the direction in which the function has the steepest rate of increase, but it does not tell us how far along this direction we should step. As we will see later in the course, choosing the step size (also called the *learning rate*) will become one of the most important (and most headache-inducing) hyperparameter settings in training a neural network. In our blindfolded hill-descent analogy, we feel the hill below our feet sloping in some direction, but the step length we should take is uncertain. If we shuffle our feet carefully we can expect to make consistent but very small progress (this corresponds to having a small step size). Conversely, we can choose to make a large, confident step in an attempt to descend faster, but this may not pay off. As you can see in the code example above, at some point taking a bigger step gives a higher loss as we "overstep".
 
 <div class="fig figleft fighighlight">
-  <img src="/assets/stepsize.jpg">
+  <img src="/assets/1-3/stepsize.jpg">
   <div class="figcaption">
     Visualizing the effect of step size. We start at some particular spot W and evaluate the gradient (or rather its negative - the white arrow) which tells us the direction of the steepest decrease in the loss function. Small steps are likely to lead to consistent but slow progress. Large steps can lead to better progress but are more risky. Note that eventually, for a large step size we will overshoot and make the loss worse. The step size (or as we will later call it - the <b>learning rate</b>) will become one of the most important hyperparameters that we will have to carefully tune.
   </div>
@@ -335,7 +337,7 @@ The extreme case of this is a setting where the mini-batch contains only a singl
 ### Summary
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/dataflow.jpeg">
+  <img src="/assets/1-3/dataflow.jpeg">
   <div class="figcaption">
     Summary of the information flow. The dataset of pairs of <b>(x,y)</b> is given and fixed. The weights start out as random numbers and can change. During the forward pass the score function computes class scores, stored in vector <b>f</b>. The loss function contains two components: The data loss computes the compatibility between the scores <b>f</b> and the labels <b>y</b>. The regularization loss is only a function of the weights. During Gradient Descent, we compute the gradient on the weights (and optionally on data if we wish) and use them to perform a parameter update during Gradient Descent.
   </div>
@@ -346,7 +348,7 @@ In this section,
 
 - We developed the intuition of the loss function as a **high-dimensional optimization landscape** in which we are trying to reach the bottom. The working analogy we developed was that of a blindfolded hiker who wishes to reach the bottom. In particular, we saw that the SVM cost function is piece-wise linear and bowl-shaped.
 - We motivated the idea of optimizing the loss function with
-**iterative refinement**, where we start with a random set of weights and refine them step by step until the loss is minimized. 
+  **iterative refinement**, where we start with a random set of weights and refine them step by step until the loss is minimized. 
 - We saw that the **gradient** of a function gives the steepest ascent direction and we discussed a simple but inefficient way of computing it numerically using the finite difference approximation (the finite difference being the value of *h* used in computing the numerical gradient).
 - We saw that the parameter update requires a tricky setting of the **step size** (or the **learning rate**) that must be set just right: if it is too low the progress is steady but slow. If it is too high the progress can be faster, but more risky. We will explore this tradeoff in much more detail in future sections.
 - We discussed the tradeoffs between computing the **numerical** and **analytic** gradient. The numerical gradient is simple but it is approximate and expensive to compute. The analytic gradient is exact, fast to compute but more error-prone since it requires the derivation of the gradient with math. Hence, in practice we always use the analytic gradient and then perform a **gradient check**, in which its implementation is compared to the numerical gradient.
