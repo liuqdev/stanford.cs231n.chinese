@@ -16,13 +16,13 @@ permalink: /terminal-tutorial/
 如图所示，点击右下角的"开始Start"按钮Click the "Start" ，你的账户中就会有这些分享的截图/快照。在 [My Terminals](https://www.stanfordterminalcloud.com/terminals) 下找到你的终端(terminal) 。
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/终端(terminal)-my.jpg'>
+  <img src='/assets/terminal-my.jpg'>
 </div>
 
 Yours will look similar. You are all set! 点击指向你的终端(terminal)的链接（图中的红框）, 来工作在你的终端上。这个链接就会打开在AWS 服务器(Amazon Web Services 亚马逊网络服务, machine) 的用户交互界面。看起来界面会和以下类似：
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/终端(terminal)-development.jpg'>
+  <img src='/assets/terminal-development.jpg'>
 </div>
 
 在终端中已经为你准备好了Jupyter Notebook和其他依赖项。通过小`+` 号来新建一个控制台窗口(如果之前没有创建过的话)，还能浏览和查找编程任务的文件夹和代码。启动一个Jupter Notebook在上面完成你的编程任务。如果你是参见本门课程的同学，你将通过 Coursework 来提交你的编程任务:
