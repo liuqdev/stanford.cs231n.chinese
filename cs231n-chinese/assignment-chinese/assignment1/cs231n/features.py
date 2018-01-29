@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import matplotlib # 绘图库
 import numpy as np # 科学计算库
 from scipy.ndimage import uniform_filter # 对于图像的操作
