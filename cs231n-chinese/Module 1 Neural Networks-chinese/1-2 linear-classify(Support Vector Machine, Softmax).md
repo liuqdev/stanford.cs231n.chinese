@@ -3,11 +3,13 @@ layout: page
 permalink: /linear-classify/
 ---
 
-# Support Vector Machine, Softmax
 
-Table of Contents:
 
-- [Intro to Linear classification](#intro)
+# 支持向量机、交叉熵（Support Vector Machine, Softmax）
+
+内容“菜单”:
+
+- [线性分类介绍（Intro to Linear classification）](#intro)
 - [Linear score function](#score)
 - [Interpreting a linear classifier](#interpret)
 - [Loss function](#loss)
