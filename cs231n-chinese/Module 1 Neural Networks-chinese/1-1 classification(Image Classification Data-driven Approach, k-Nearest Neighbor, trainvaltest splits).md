@@ -4,14 +4,14 @@ mathjax: true
 permalink: /classification/
 ---
 
-#Image Classification Data-driven Approach, k-Nearest Neighbor, trainvaltest splits
+#受数据驱动的图像分类方法，K最近邻，训练验证测试集划分
 
-This is an introductory lecture designed to introduce people from outside of Computer Vision to the Image Classification problem, and the data-driven approach. The Table of Contents:
+内容“菜单”：
 
-- [Intro to Image Classification, data-driven approach, pipeline](#intro)
-- [Nearest Neighbor Classifier](#nn)
-  - [k-Nearest Neighbor](#knn)
-- [Validation sets, Cross-validation, hyperparameter tuning](#val)
+- [介绍图像分类（Image Classification）,数据驱动的方法（data-driven approach）, 以及处理流程pipeline](#intro)
+- [最近邻分类器Nearest Neighbor Classifier](#nn)
+  - [K最近邻方法k-Nearest Neighbor](#knn)
+- [验证集Validation sets, 交叉验证（Cross-validation）, 超参数调试（hyperparameter tuning）](#val)
 - [Pros/Cons of Nearest Neighbor](#procon)
 - [Summary](#summary)
 - [Summary: Applying kNN in practice](#summaryapply)
