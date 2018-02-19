@@ -10,18 +10,18 @@ permalink: /linear-classify/
 内容“菜单”:
 
 - [线性分类介绍（Intro to Linear classification）](#intro)
-- [Linear score function](#score)
-- [Interpreting a linear classifier](#interpret)
-- [Loss function](#loss)
+- [线性打分函数Linear score function](#score)
+- [线性分类器解释Interpreting a linear classifier](#interpret)
+- [损失函数Loss function](#loss)
   - [Multiclass SVM](#svm)
-  - [Softmax classifier](#softmax)
-  - [SVM vs Softmax](#svmvssoftmax)
-- [Interactive Web Demo of Linear Classification](#webdemo)
-- [Summary](#summary)
+  - [交叉熵分类器Softmax classifier](#softmax)
+  - [支持向量机 vs 交叉熵SVM vs Softmax](#svmvssoftmax)
+- [交互式线性分类器演示Interactive Web Demo of Linear Classification](#webdemo)
+- [结论Summary](#summary)
 
 <a name='intro'></a>
 
-## Linear Classification
+## 线性分类Linear Classification
 
 In the last section we introduced the problem of Image Classification, which is the task of assigning a single label to an image from a fixed set of categories. Morever, we described the k-Nearest Neighbor (kNN) classifier which labels images by comparing them to (annotated) images from the training set. As we saw, kNN has a number of disadvantages:
 
