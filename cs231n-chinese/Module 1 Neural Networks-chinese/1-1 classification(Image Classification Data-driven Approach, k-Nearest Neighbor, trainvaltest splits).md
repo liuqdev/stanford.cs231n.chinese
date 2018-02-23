@@ -160,7 +160,9 @@ Note that I included the `np.sqrt` call above, but in a practical nearest neighb
 
 <a name='knn'></a>
 
-### K最近邻分类器k - Nearest Neighbor Classifier
+### K最近邻分类器
+
+### k - Nearest Neighbor Classifier
 
 You may have noticed that it is strange to only use the label of the nearest image when we wish to make a prediction. Indeed, it is almost always the case that one can do better by using what's called a **k-Nearest Neighbor Classifier**. The idea is very simple: instead of finding the single closest image in the training set, we will find the top **k** closest images, and have them vote on the label of the test image. In particular, when *k = 1*, we recover the Nearest Neighbor classifier. Intuitively, higher values of **k** have a smoothing effect that makes the classifier more resistant to outliers:
 
